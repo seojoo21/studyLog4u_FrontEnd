@@ -7,6 +7,8 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import moment from 'moment';
 import { deleteStudyApi } from '../api/studyApi';
+import ReviewListForm from './ReviewListForm';
+import ReviewRegisterForm from './ReviewRegisterForm';
 
 function StudyViewForm(props) {
     const study = props.study;
@@ -25,15 +27,6 @@ function StudyViewForm(props) {
             initialValue: content
         });
     }
-
-    // const el2 = document.querySelector('#reviewViewer');
-    // if (el2 !== null ){
-    //     const viewer = new Viewer({
-    //         el: el2,
-    //         height: '200px',
-    //         initialValue: content
-    //     });
-    // }
 
     const onDelete = async () => {
         const check = window.confirm("정말 삭제하시겠습니까?");
@@ -61,34 +54,13 @@ function StudyViewForm(props) {
                                 </div>
                                 <div id="studyViewer" style={{backgroundColor: "#F8FAFF"}}>내용</div>
                                 <hr/>
-                                <h6>📝 리뷰 로그</h6>
                                 </>
                             }
                         </StudyContent>
                         <ReviewList>
-                            <>
-                            <div>
-                                {reviewList.length != 0 && 
-                                    reviewList.map( (review) => {
-                                        const regDate = moment(review.regDate).format('YYYY-MM-DD HH:mm');
-                                        const modDate = moment(review.modDate).format('YYYY-MM-DD HH:mm');
-                                        // const content = review.content
-
-                                        return (
-                                            <>
-                                            <div key={review.id}>
-                                                <div style={{backgroundColor: "#F8F8FF"}} >
-                                                    <p><div id="reviewViewer">{review.content}</div></p>
-                                                    <p style={{color: "#85929E"}}>✏️ 작성: {regDate} | 수정: {modDate} </p>
-                                                </div>
-                                            </div>
-                                            </>
-                                        )
-                                    })}
-                                <hr/>
-                            </div>
-                            </>
+                            <ReviewListForm reviewList={reviewList}></ReviewListForm>
                         </ReviewList>
+                        <ReviewRegisterForm></ReviewRegisterForm>
                         </StudyViewFormContainer>
     return (<>{returnHtml}</>);
 }

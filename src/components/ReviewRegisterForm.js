@@ -4,15 +4,18 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
-function ReviewForm() {
+function ReviewRegisterForm() {
+
+    const editorRef = React.useRef();
 
     const returnHtml = <ReviewFormContainer>
-                    <h6>리뷰 작성</h6>
+                    <h6>📝 리뷰 작성</h6>
                     <Editor
-                        reviewStyle="vertical" // 미리보기 스타일 지정
+                        previewStyle="vertical" // 미리보기 스타일 지정
                         height="300px" // 에디터 창 높이
-                        initialEditType="wysiwyg" // 초기 입력모드 설정(디폴트 markdown)
+                        initialEditType="markdown" // 초기 입력모드 설정(디폴트 markdown)
                         toolbarItems={[
                             // 툴바 옵션 설정
                             ['heading', 'bold', 'italic', 'strike'],
@@ -21,8 +24,11 @@ function ReviewForm() {
                             ['table', 'image', 'link'],
                             ['code', 'codeblock']
                         ]}
+                        plugins={[colorSyntax]} 
+                        useCommandShortcut={true}
+                        ref={editorRef}
                     ></Editor>
-                    <Button size='default'>등록</Button> <Button size='default'>초기화</Button> <Button size='default'>취소</Button>
+                    <Button size='default'>등록</Button> <Button size='default'>취소</Button>
                     </ReviewFormContainer>
 
     return (<>{returnHtml}</>);
@@ -30,8 +36,8 @@ function ReviewForm() {
 
 const ReviewFormContainer = styled.div`
     margin-top: 30px;
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
 `
 
-export default ReviewForm;
+export default ReviewRegisterForm;
