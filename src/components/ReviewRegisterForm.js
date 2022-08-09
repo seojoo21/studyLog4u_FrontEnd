@@ -5,10 +5,19 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import { registerReviewApi } from '../api/reviewApi';
 
-function ReviewRegisterForm() {
-
+function ReviewRegisterForm(props) {
     const editorRef = React.useRef();
+
+    const onSubmitHandler = () => {
+        const editorInstance = editorRef.current.getInstance();
+        const requestBody = {
+            studyId : props.studyId,
+            content : editorInstance.getMarkdown()
+        }
+        registerReviewApi(requestBody);
+    }
 
     const returnHtml = <ReviewFormContainer>
                     <h6>📝 리뷰 작성</h6>
@@ -26,11 +35,9 @@ function ReviewRegisterForm() {
                         ]}
                         plugins={[colorSyntax]} 
                         useCommandShortcut={true}
-                        ref={editorRef}
-                    ></Editor>
-                    <Button size='default'>등록</Button> <Button size='default'>취소</Button>
-                    </ReviewFormContainer>
-
+                        ref={editorRef}></Editor>
+                    <Button size='default' onClick={onSubmitHandler}>등록</Button>
+                    </ReviewFormContainer>                    
     return (<>{returnHtml}</>);
 }
 

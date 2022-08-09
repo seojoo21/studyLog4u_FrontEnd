@@ -31,7 +31,6 @@ function StudyViewForm(props) {
     const onDelete = async () => {
         const check = window.confirm("정말 삭제하시겠습니까?");
         const id = study.id;
-        // 나중에 리뷰 목록도 함께 삭제 될 수 있도록 조건 잊지 말고 추가해서 코드 수정 해주기 
         if (check) {
             await deleteStudyApi(id);
             alert('삭제 되었습니다.');
@@ -39,6 +38,15 @@ function StudyViewForm(props) {
         }
     }
 
+    const [open, setOpen] = useState(false);
+    const onSetReviewRegister = async () => {
+        setOpen(true);
+    }
+    const offSetReviewRegister = async() => {
+        setOpen(false);
+        window.scrollTo(0,0);
+    }
+    
     const returnHtml = <StudyViewFormContainer>
                         <StudyContent>
                             {study != null &&
@@ -49,7 +57,7 @@ function StudyViewForm(props) {
                                     <p style={{color: "#5D6D7E"}}>✏️ 작성: {regDate} | 수정: {modDate} | <Link to={`/study/update/${study.id}`}><Button size='small'>수정</Button></Link> <Button onClick={onDelete} size='small'>삭제</Button></p>
                                     <hr/> 
                                     <h6>📚 복습 확인</h6>
-                                    <p >📆 복습일: {notiDate} | <Button size='small'>복습하러가기</Button></p>
+                                    <p >📆 복습일: {notiDate} | <Button size='small' onClick={onSetReviewRegister}>복습하러가기</Button></p>
                                     <hr/>
                                 </div>
                                 <div id="studyViewer" style={{backgroundColor: "#F8FAFF"}}>내용</div>
@@ -58,9 +66,17 @@ function StudyViewForm(props) {
                             }
                         </StudyContent>
                         <ReviewList>
-                            <ReviewListForm reviewList={reviewList}></ReviewListForm>
+                            {reviewList.length != 0 && 
+                            <ReviewListForm reviewList={reviewList}></ReviewListForm>}
                         </ReviewList>
-                        <ReviewRegisterForm></ReviewRegisterForm>
+                        { open &&
+                            <>
+                            <ReviewRegisterForm studyId={study.id}></ReviewRegisterForm>
+                            <div style={{paddingLeft: 20, marginTop: 5}}>
+                                <Button size='default' onClick={offSetReviewRegister}>복습 취소</Button>
+                            </div>
+                            </>
+                        }
                         </StudyViewFormContainer>
     return (<>{returnHtml}</>);
 }

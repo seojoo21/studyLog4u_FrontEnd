@@ -70,7 +70,6 @@ const updateStudyApi = async (id, props) => {
     try{
         const response = await axios(option);
         alert(`스터디 수정이 완료되었습니다.`);
-        console.log(response);
         window.location.href = "/"
     } catch(e) {
         alert(`스터디 수정에 실패하였습니다.`);

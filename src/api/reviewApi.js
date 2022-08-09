@@ -29,10 +29,13 @@ const registerReviewApi = async (props) => {
 
     try {
         const response = await axios(option);
-        console.log(response);
+        alert(`새로운 리뷰 등록이 완료되었습니다.`);
+        window.location.href = `/study/${props.studyId}`;
 
     } catch (e) {
         console.log(e);
+        alert(`새로운 리뷰 등록에 실패하였습니다.`);
+        window.location.href = `/study/${props.studyId}`;
         return null;
     }
 }
@@ -62,7 +65,7 @@ const updateReviewApi = async (id, props) => {
 }
 
 const deleteReviewApi = async (id) => {
-    const url = base.url + `/api/study/${id}`
+    const url = base.url + `/api/review/${id}`
     const option = {
         url: url,
         method: 'DELETE',
