@@ -38,6 +38,10 @@ function StudyForm() {
         registerStudyApi(requestBody);
     }
 
+    const onListHandler = async() => {
+        window.location.href = "/"
+    }
+
     function Notification(){
         return (
             <FloatingLabel controlId="floatingSelect" label="복습일 선택" className="mb-3">
@@ -79,7 +83,7 @@ function StudyForm() {
                                 useCommandShortcut={true}
                                 ref={editorRef}
                                 ></Editor>
-                            <Button onClick={onSubmitHandler} size='default'>등록</Button>
+                            <Button onClick={onSubmitHandler} size='default'>등록</Button> <Button onClick={onListHandler} size='default'>목록으로</Button>
                         </StudyFormContainer>
     return (<>{returnHtml}</>);
 }

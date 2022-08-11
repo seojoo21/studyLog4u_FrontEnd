@@ -14,7 +14,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/study/:studyId" element={<StudyView />}></Route>
-          <Route path="/study/:studyId/review/register" ></Route>
           <Route path="/review/register" element={<ReviewRegister/>}></Route>
           <Route path="/study/register" element={<StudyRegister />}></Route>
           <Route path="/study/update/:studyId" element={<StudyUpdate/>}></Route>

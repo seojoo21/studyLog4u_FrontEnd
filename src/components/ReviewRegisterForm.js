@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { registerReviewApi } from '../api/reviewApi';

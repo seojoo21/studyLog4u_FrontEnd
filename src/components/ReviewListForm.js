@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import React from 'react'
 import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import moment from 'moment';
-import { deleteStudyApi } from '../api/studyApi';
 import { deleteReviewApi } from '../api/reviewApi';
 
 function ReviewListForm (props){

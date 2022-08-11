@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import moment from 'moment';
 import { deleteStudyApi } from '../api/studyApi';
@@ -46,6 +45,10 @@ function StudyViewForm(props) {
         setOpen(false);
         window.scrollTo(0,0);
     }
+
+    const onListHandler = async() => {
+        window.history.back();
+    }
     
     const returnHtml = <StudyViewFormContainer>
                         <StudyContent>
@@ -77,6 +80,7 @@ function StudyViewForm(props) {
                             </div>
                             </>
                         }
+                        <ButtonWrap><Button onClick={onListHandler} size='default'>목록으로</Button></ButtonWrap>
                         </StudyViewFormContainer>
     return (<>{returnHtml}</>);
 }
@@ -97,5 +101,9 @@ const ReviewList = styled.div`
     text-align: left;
     padding-left: 20px;
     padding-right: 20px;
+`
+const ButtonWrap = styled.div`
+    margin-top: 5px;
+    padding-left: 20px;
 `
 export default StudyViewForm;
