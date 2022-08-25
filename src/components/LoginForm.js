@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import googleLogo from '../img/google-logo.png'
-import {GOOGLE_AUTH_URL} from '../api/loginApi'
+import {GOOGLE_AUTH_URL} from '../constants/oauth2Index'
+import { Link } from "react-router-dom";
 
 function LoginForm(){
 

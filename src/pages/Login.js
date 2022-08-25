@@ -4,7 +4,7 @@ import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
 import LoginForm from '../components/LoginForm'
 
-function LoginRedirect(){
+function Login(){
 
     return (
         <div>
@@ -21,4 +21,4 @@ const ContentContainer = styled.div`
     max-width: 1320px;
 `
 
-export default LoginRedirect;
+export default Login;
