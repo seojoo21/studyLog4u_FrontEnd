@@ -8,7 +8,7 @@ function OAuth2Redirect(){
     const error = searchParams.get("error");
 
     if (token){
-        localStorage.setItem(ACCESS_TOKEN, token);
+        sessionStorage.setItem(ACCESS_TOKEN, token);
         return <Navigate to="/" replace />
     } else {
         return <Navigate to="/login" replace />
