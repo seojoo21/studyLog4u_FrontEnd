@@ -3,8 +3,13 @@ import styled from 'styled-components'
 import googleLogo from '../img/google-logo.png'
 import {GOOGLE_AUTH_URL} from '../constants/oauth2Index'
 import { Link } from "react-router-dom";
+import { loginApi } from '../api/loginApi';
 
 function LoginForm(){
+
+    const loginHandler = () => {
+        loginApi();
+    }
 
     return(
         <LoginContainer>
@@ -14,7 +19,8 @@ function LoginForm(){
                     <h6> 느리더라도 차분하게 꾸준하게 걸어갑시다 😊</h6>
                 </LoginTitle>
                     <div className="social-login">
-                        <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
+                        {/* <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}> */}
+                        <a className="btn btn-block social-btn google" onClick={loginHandler}>
                         <img src={googleLogo} alt="Google" style={{height: 32, float: 'left', marginRight: 10}}/>구글 계정으로 로그인하기</a>
                     </div>
             </LoginContent>
