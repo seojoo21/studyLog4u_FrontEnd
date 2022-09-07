@@ -1,14 +1,12 @@
 import React from 'react';
-import {ACCESS_TOKEN} from '../constants/oauth2Index';
 import { Navigate, useSearchParams } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 function OAuth2Redirect(){
-    const searchParams = useSearchParams();
-    const token = searchParams.get("token");
-    const error = searchParams.get("error");
+    const cookies = new Cookies();
+    const JwtToken = cookies.get('jwtToken');
 
-    if (token){
-        sessionStorage.setItem(ACCESS_TOKEN, token);
+    if (JwtToken){
         return <Navigate to="/" replace />
     } else {
         return <Navigate to="/login" replace />
