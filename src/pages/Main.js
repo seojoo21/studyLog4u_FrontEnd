@@ -1,46 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Pagination } from 'antd';
 import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
-import StudyList from '../components/StudyList'
-import { getStudyListApi } from '../api/studyApi'
-import { Input, Space } from 'antd';
+import { useLocation } from 'react-router-dom'
 
 function Main(){
-    const [studyList, setStudyList] = useState([]);
-    const [page, setPage] = useState(1);
-    
-    const getStudyList = async () => {
-        const data = await getStudyListApi(1, "", "");
-        setStudyList(data);
-    }
-
-    useEffect(async () => {
-        getStudyList();
-    }, []);
-
-    const onPageClick = async (e) => {
-        const data = await getStudyListApi(e, "", "");
-        setStudyList(data);
-        setPage(e)
-    }
-
-    const { Search } = Input;
-    const onSearch = async (keyword) => {
-        const data = await getStudyListApi(1,"tcg",keyword); // type: "tcg": 제목, 내용, 카테고리 모두 검색  
-        setStudyList(data);
-    };
+    const state = useLocation();
+    const loginCheck = state.state == null ? "" : state.state.login;
 
     return (
         <div>
             <HeaderMain></HeaderMain>
             <ContentContainer className="container" >
-                <Space direction="vertical" style={{paddingRight: 20, float:'right'}}>
-                    <Search placeholder="검색어를 입력하세요." onSearch={onSearch} style={{width: 200}}/>
-                </Space>
-                <StudyList data={studyList}></StudyList>
-                <Pagination onChange={onPageClick} current={studyList.page} total={studyList.totalCount} showTotal={total => `총 ${total} 건`}/>
+                <Welcome>
+                    { 
+                        loginCheck == ""
+                        ? <><h4> 어서오세요.</h4><h5>🔐 서비스를 이용하시려면 로그인 해주세요.</h5></>
+                        : <><h4> 환영합니다.</h4><h5>🔓 로그인 되었습니다.</h5></>
+                    }
+                </Welcome>
             </ContentContainer>
             <FooterMain></FooterMain>
         </div>
@@ -49,6 +27,10 @@ function Main(){
 
 const ContentContainer = styled.div`
     max-width: 1320px;
+`
+
+const Welcome = styled.div`
+    padding: 20px;
 `
 
 export default Main;

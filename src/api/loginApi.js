@@ -1,8 +1,17 @@
 import axios from 'axios';
-import {GOOGLE_AUTH_URL} from '../constants/oauth2Index';
 
-const loginApi = async () => {
+const base = require('../config/api.json')
+
+const getLoginApi = async (jwtToken) => {
+    const url = base.url + `/api/login`;
+    const config = { headers : { 'Authorization' : "Bearer " + jwtToken}};
     
+    try {
+        const response = await axios.get(url, config);
+        return response.data.data;
+    } catch(e){
+        return [];
+    }
 }
 
-export { loginApi };
+export { getLoginApi };

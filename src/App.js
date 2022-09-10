@@ -7,6 +7,7 @@ import StudyUpdate from './pages/StudyUpdate'
 import EmptyPage from './pages/EmptyPage';
 import Login from './pages/Login';
 import OAuth2Redirect from './pages/OAuth2Redirect';
+import AllStudyList from './pages/AllStudyList';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/studyList" element={<AllStudyList />}></Route>
           <Route path="/study/:studyId" element={<StudyView />}></Route>
           <Route path="/review/register" element={<ReviewRegister/>}></Route>
           <Route path="/study/register" element={<StudyRegister />}></Route>
