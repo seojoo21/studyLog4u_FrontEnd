@@ -8,6 +8,7 @@ import EmptyPage from './pages/EmptyPage';
 import Login from './pages/Login';
 import OAuth2Redirect from './pages/OAuth2Redirect';
 import AllStudyList from './pages/AllStudyList';
+import OAuth2Logout from './pages/OAuth2Logout';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/study/register" element={<StudyRegister />}></Route>
           <Route path="/study/update/:studyId" element={<StudyUpdate/>}></Route>
           <Route path="/oauth2/redirect" element={<OAuth2Redirect/>}></Route>
+          <Route path="/logout" element={<OAuth2Logout/>}></Route>
           <Route path="*" element={<EmptyPage/>}></Route>
         </Routes>
       </div>

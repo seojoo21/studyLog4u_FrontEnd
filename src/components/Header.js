@@ -9,15 +9,6 @@ function Header() {
   const jwtToken = cookies.get('jwtToken');
   const location = window.location;
 
-  const onLogoutHandler = async () => {
-    const check = window.confirm("로그아웃 하시겠습니까?");
-    if (check) {
-      cookies.remove('jwtToken');
-      alert('로그아웃 되었습니다.');
-      window.location.href = "/";
-    }
-  }
-
   return (
     <>
     <Navbar bg="dark" variant="dark">
@@ -27,8 +18,7 @@ function Header() {
         {
           jwtToken !== undefined
           ? <>
-          <Nav.Link onClick={onLogoutHandler}>로그아웃</Nav.Link>
-          {/* <Nav.Link href="/login">로그인</Nav.Link> */}
+          <Nav.Link href="/logout">로그아웃</Nav.Link> 
           <Nav.Link href="/studyList">스터디 목록</Nav.Link>
           <Nav.Link href="/study/register">스터디 등록</Nav.Link>
           </>
