@@ -4,14 +4,18 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from 'antd';
 import moment from 'moment';
 import { deleteReviewApi } from '../api/reviewApi';
+import Cookies from 'universal-cookie';
 
 function ReviewListForm (props){
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
+
     const reviewList = props.reviewList;
 
     const onDelete = async(id) => {
         const check = window.confirm("정말 삭제하시겠습니까?");
         if (check) {
-            await deleteReviewApi(id);
+            await deleteReviewApi(id, jwtToken);
             alert('삭제 되었습니다.');
             window.location.reload();
         }

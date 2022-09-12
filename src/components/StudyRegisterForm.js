@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -10,8 +9,12 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { registerStudyApi } from '../api/studyApi';
+import Cookies from 'universal-cookie';
 
 function StudyForm() {
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
+
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [notiDate, setNotiDate] = useState(0);
@@ -35,11 +38,11 @@ function StudyForm() {
             notiDate: notiDate,
             content: editorInstance.getMarkdown()
         }
-        registerStudyApi(requestBody);
+        registerStudyApi(requestBody, jwtToken);
     }
 
     const onListHandler = async() => {
-        window.location.href = "/"
+        window.location.href = "/studyList"
     }
 
     function Notification(){

@@ -6,14 +6,17 @@ import FooterMain from '../components/Footer'
 import StudyList from '../components/StudyList'
 import { getStudyListApi } from '../api/studyApi'
 import { Input, Space } from 'antd';
+import Cookies from 'universal-cookie';
 
 function AllStudyList(){
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
 
     const [studyList, setStudyList] = useState([]);
     const [page, setPage] = useState(1);
     
     const getStudyList = async () => {
-        const data = await getStudyListApi(1, "", "");
+        const data = await getStudyListApi(1, "", "", jwtToken);
         setStudyList(data);
     }
 
@@ -22,14 +25,14 @@ function AllStudyList(){
     }, []);
 
     const onPageClick = async (e) => {
-        const data = await getStudyListApi(e, "", "");
+        const data = await getStudyListApi(e, "", "", jwtToken);
         setStudyList(data);
         setPage(e)
     }
 
     const { Search } = Input;
     const onSearch = async (keyword) => {
-        const data = await getStudyListApi(1,"tcg",keyword); // type: "tcg": 제목, 내용, 카테고리 모두 검색  
+        const data = await getStudyListApi(1, "tcg", keyword, jwtToken); // type: "tcg": 제목, 내용, 카테고리 모두 검색  
         setStudyList(data);
     };
 

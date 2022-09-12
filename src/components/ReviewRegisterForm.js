@@ -5,17 +5,21 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from 'antd';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { registerReviewApi } from '../api/reviewApi';
+import Cookies from 'universal-cookie';
 
 function ReviewRegisterForm(props) {
-    const editorRef = React.useRef();
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
 
+    const editorRef = React.useRef();
+    
     const onSubmitHandler = () => {
         const editorInstance = editorRef.current.getInstance();
         const requestBody = {
             studyId : props.studyId,
             content : editorInstance.getMarkdown()
         }
-        registerReviewApi(requestBody);
+        registerReviewApi(requestBody, jwtToken);
     }
 
     const returnHtml = <ReviewFormContainer>
@@ -35,7 +39,7 @@ function ReviewRegisterForm(props) {
                         plugins={[colorSyntax]} 
                         useCommandShortcut={true}
                         ref={editorRef}></Editor>
-                    <Button size='default' onClick={onSubmitHandler}>등록</Button>
+                    <Button size='default' onClick={onSubmitHandler}>복습 등록</Button>
                     </ReviewFormContainer>                    
     return (<>{returnHtml}</>);
 }

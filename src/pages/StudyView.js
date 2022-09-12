@@ -6,19 +6,23 @@ import FooterMain from '../components/Footer'
 import StudyViewForm from '../components/StudyViewForm'
 import { getStudyApi } from '../api/studyApi'
 import { getReviewListApi } from '../api/reviewApi'
+import Cookies from 'universal-cookie';
 
 function StudyView() {
+  const cookies = new Cookies();
+  const jwtToken = cookies.get('jwtToken');
+
   const [study, setStudy] = useState([]);
   const [reviewList, setReviewList] = useState([]);
   const id = useParams().studyId;
 
   const getStudy = async () => {
-    const data = await getStudyApi(id);
+    const data = await getStudyApi(id, jwtToken);
     setStudy(data);
   }
 
   const getReviewList = async() => {
-    const data = await getReviewListApi(id);
+    const data = await getReviewListApi(id, jwtToken);
     setReviewList(data);
   }
 

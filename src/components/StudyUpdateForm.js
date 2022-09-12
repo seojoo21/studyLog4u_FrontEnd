@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -11,9 +10,12 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import moment from 'moment';
 import { updateStudyApi } from '../api/studyApi';
+import Cookies from 'universal-cookie';
 
 function StudyForm(props) {
-    console.log(props);
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
+
     const study = props.study;
     
     const [title, setTitle] = useState(study.title);
@@ -41,7 +43,7 @@ function StudyForm(props) {
             notiDate: notiDate,
             content: editorInstance.getMarkdown()
         }
-        updateStudyApi(id, requestBody);
+        updateStudyApi(id, requestBody, jwtToken);
     }
 
     function Notification(){

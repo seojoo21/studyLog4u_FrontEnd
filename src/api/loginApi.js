@@ -3,7 +3,7 @@ import axios from 'axios';
 const base = require('../config/api.json')
 
 const getLoginApi = async (jwtToken) => {
-    const url = base.url + `/api/login`;
+    const url = base.url + `/api/auth/login`;
     const config = { headers : { 'Authorization' : "Bearer " + jwtToken}};
     
     try {

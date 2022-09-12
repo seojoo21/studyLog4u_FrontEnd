@@ -5,14 +5,17 @@ import styled from 'styled-components'
 import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
 import StudyUpdateForm from '../components/StudyUpdateForm'
-
+import Cookies from 'universal-cookie';
 
 function StudyUpdate() {
+  const cookies = new Cookies();
+  const jwtToken = cookies.get('jwtToken');
+
   const [study, setStudy] = useState([]);
   const id = useParams().studyId;
 
   const getStudy = async () => {
-    const data = await getStudyApi(id);
+    const data = await getStudyApi(id, jwtToken);
     setStudy(data);
   }
 

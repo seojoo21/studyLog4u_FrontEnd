@@ -8,8 +8,12 @@ import moment from 'moment';
 import { deleteStudyApi } from '../api/studyApi';
 import ReviewListForm from './ReviewListForm';
 import ReviewRegisterForm from './ReviewRegisterForm';
+import Cookies from 'universal-cookie';
 
 function StudyViewForm(props) {
+    const cookies = new Cookies();
+    const jwtToken = cookies.get('jwtToken');
+
     const study = props.study;
     const reviewList = props.reviewList;
 
@@ -31,9 +35,9 @@ function StudyViewForm(props) {
         const check = window.confirm("정말 삭제하시겠습니까?");
         const id = study.id;
         if (check) {
-            await deleteStudyApi(id);
+            await deleteStudyApi(id, jwtToken);
             alert('삭제 되었습니다.');
-            window.location.href = "/"
+            window.location.href = "/studyList"
         }
     }
 
