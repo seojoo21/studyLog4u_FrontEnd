@@ -40,7 +40,8 @@ const registerStudyApi = async (props, jwtToken) => {
             title: props.title,
             category: props.category,
             notiDate: dateFormat(props.notiDate),
-            content: props.content
+            content: props.content,
+            nickname: props.nickname
         }
     }
 

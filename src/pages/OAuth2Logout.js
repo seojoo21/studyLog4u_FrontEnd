@@ -6,6 +6,7 @@ import { getLoginApi } from '../api/loginApi';
 function OAuth2Logout(){
     const cookies = new Cookies();
     cookies.remove('jwtToken');
+    cookies.remove('memberName');
 
     return <Navigate to="/" replace />
 }

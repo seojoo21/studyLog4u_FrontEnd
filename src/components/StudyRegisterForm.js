@@ -14,10 +14,11 @@ import Cookies from 'universal-cookie';
 function StudyForm() {
     const cookies = new Cookies();
     const jwtToken = cookies.get('jwtToken');
+    const memberName = cookies.get('memberName');
 
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
-    const [notiDate, setNotiDate] = useState(0);
+    const [notiDate, setNotiDate] = useState("0");
 
     const editorRef = React.useRef();
 
@@ -36,7 +37,8 @@ function StudyForm() {
             title: title,
             category: category,
             notiDate: notiDate,
-            content: editorInstance.getMarkdown()
+            content: editorInstance.getMarkdown(),
+            nickname: memberName
         }
         registerStudyApi(requestBody, jwtToken);
     }
