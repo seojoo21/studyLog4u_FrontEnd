@@ -36,7 +36,7 @@ function dateFormat(value){
     month = month >=10 ? month : `0${month}`;
     day = day >=10 ? day : `0${day}`;
 
-    return `${year}-${month}-${day}T20:00:00.000Z`;
+    return `${year}-${month}-${day}T00:00:00.000Z`;
 
 }
 
