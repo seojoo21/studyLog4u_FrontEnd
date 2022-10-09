@@ -2,13 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
-import { useLocation } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 
 function Main(){
-    const state = useLocation();
-    // const loginCheck = state.state == null ? "" : state.state.login;
-
     const cookies = new Cookies();
     const jwtToken = cookies.get('jwtToken');
     const memberName = cookies.get('memberName');

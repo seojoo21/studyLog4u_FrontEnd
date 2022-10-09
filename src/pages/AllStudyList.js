@@ -6,11 +6,10 @@ import FooterMain from '../components/Footer'
 import StudyList from '../components/StudyList'
 import { getStudyListApi } from '../api/studyApi'
 import { Input, Space } from 'antd';
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function AllStudyList(){
-    const cookies = new Cookies();
-    const jwtToken = cookies.get('jwtToken');
+    const jwtToken = loginCheck();
 
     const [studyList, setStudyList] = useState([]);
     const [page, setPage] = useState(1);

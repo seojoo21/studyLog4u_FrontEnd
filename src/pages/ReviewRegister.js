@@ -3,8 +3,11 @@ import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
 import ReviewRegisterForm from '../components/ReviewRegisterForm'
 import StudyViewForm from '../components/StudyViewForm';
+import { loginCheck } from '../common/loginCheck'
 
 function ReviewRegister() {
+    const jwtToken = loginCheck();
+    
     return (
       <div>
         <HeaderMain />

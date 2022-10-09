@@ -11,7 +11,6 @@ import AllStudyList from './pages/AllStudyList';
 import OAuth2Logout from './pages/OAuth2Logout';
 
 function App() {
-
   return (
     <Router>
       <div>

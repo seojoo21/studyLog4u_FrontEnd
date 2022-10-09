@@ -6,11 +6,10 @@ import FooterMain from '../components/Footer'
 import StudyViewForm from '../components/StudyViewForm'
 import { getStudyApi } from '../api/studyApi'
 import { getReviewListApi } from '../api/reviewApi'
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function StudyView() {
-  const cookies = new Cookies();
-  const jwtToken = cookies.get('jwtToken');
+  const jwtToken = loginCheck();
 
   const [study, setStudy] = useState([]);
   const [reviewList, setReviewList] = useState([]);
