@@ -8,11 +8,10 @@ import moment from 'moment';
 import { deleteStudyApi } from '../api/studyApi';
 import ReviewListForm from './ReviewListForm';
 import ReviewRegisterForm from './ReviewRegisterForm';
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function StudyViewForm(props) {
-    const cookies = new Cookies();
-    const jwtToken = cookies.get('jwtToken');
+    const jwtToken = loginCheck();
 
     const study = props.study;
     const reviewList = props.reviewList;

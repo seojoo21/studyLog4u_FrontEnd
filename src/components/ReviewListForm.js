@@ -4,12 +4,10 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from 'antd';
 import moment from 'moment';
 import { deleteReviewApi } from '../api/reviewApi';
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function ReviewListForm (props){
-    const cookies = new Cookies();
-    const jwtToken = cookies.get('jwtToken');
-
+    const jwtToken = loginCheck();
     const reviewList = props.reviewList;
 
     const onDelete = async(id) => {

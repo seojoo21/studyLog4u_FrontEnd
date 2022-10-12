@@ -10,12 +10,10 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import moment from 'moment';
 import { updateStudyApi } from '../api/studyApi';
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function StudyForm(props) {
-    const cookies = new Cookies();
-    const jwtToken = cookies.get('jwtToken');
-
+    const jwtToken = loginCheck();
     const study = props.study;
     
     const [title, setTitle] = useState(study.title);

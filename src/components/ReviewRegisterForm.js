@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Button } from 'antd';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { registerReviewApi } from '../api/reviewApi';
-import Cookies from 'universal-cookie';
+import { loginCheck } from '../common/loginCheck'
 
 function ReviewRegisterForm(props) {
-    const cookies = new Cookies();
-    const jwtToken = cookies.get('jwtToken');
-
+    const jwtToken = loginCheck();
     const editorRef = React.useRef();
     
     const onSubmitHandler = () => {

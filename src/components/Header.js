@@ -1,12 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Cookies from 'universal-cookie';
-
+import { loginCheck } from '../common/loginCheck'
 
 function Header() {
-  const cookies = new Cookies();
-  const jwtToken = cookies.get('jwtToken');
+  const jwtToken = loginCheck();
   const location = window.location;
 
   return (
