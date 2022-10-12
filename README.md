@@ -33,3 +33,7 @@
 ## FrontEnd Release Note
 #### 2022.10.02 Version 1.0
 - 1차 개발 완료 후 AWS Lightsail 서버 반영 완료. 서비스 시작 
+
+#### 2022.10.12 Version 1.1
+- 소스 코드 리팩토링
+  - 각 컴포넌트에 loginCheck() 공통 모듈 적용 
