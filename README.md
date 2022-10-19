@@ -37,3 +37,6 @@
 #### 2022.10.12 Version 1.1
 - 소스 코드 리팩토링
   - 각 컴포넌트에 loginCheck() 공통 모듈 적용 
+#### 2022.10.20 서버 패치
+- Jenkins 설치 후 Github 연동 및 CI/CD 구축
+<img width="883" alt="스크린샷 2022-10-20 오전 12 49 21" src="https://user-images.githubusercontent.com/98722435/196741578-0e7e0bd2-7de2-4eb5-9d51-08a2f0d17f74.png">
