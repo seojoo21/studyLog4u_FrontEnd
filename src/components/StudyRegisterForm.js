@@ -9,6 +9,7 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { registerStudyApi } from '../api/studyApi';
+import { uploadImageApi } from '../api/fileApi';
 import Cookies from 'universal-cookie';
 
 function StudyForm() {
@@ -63,6 +64,14 @@ function StudyForm() {
         );
     }
 
+    const onUploadImage = async(blob, callback) => {
+        console.log(blob);
+        // 1. 첨부된 이미지 파일을 서버로 전송 후, 이미지 경로 url을 받아온다
+        const imgUrl = await uploadImageApi(blob, jwtToken);
+        // 2. 첨부된 이미지를 화면에 표시  
+        callback(imgUrl, '이미지');
+    }
+
     const returnHtml = <StudyFormContainer>
                             <h4>스터디 등록</h4> 
                             <FloatingLabel controlId="floatingInput" label="제목" className="mb-3">
@@ -84,6 +93,8 @@ function StudyForm() {
                                     ['table', 'image', 'link'],
                                     ['code', 'codeblock']
                                 ]}
+                                hooks= {{
+                                    addImageBlobHook: onUploadImage }}
                                 plugins={[colorSyntax]} 
                                 useCommandShortcut={true}
                                 ref={editorRef}

@@ -8,7 +8,7 @@ import moment from 'moment';
 import { deleteStudyApi } from '../api/studyApi';
 import ReviewListForm from './ReviewListForm';
 import ReviewRegisterForm from './ReviewRegisterForm';
-import { loginCheck } from '../common/loginCheck'
+import { loginCheck } from '../common/loginCheck';
 
 function StudyViewForm(props) {
     const jwtToken = loginCheck();
@@ -52,6 +52,8 @@ function StudyViewForm(props) {
     const onListHandler = async() => {
         window.history.back();
     }
+
+    const scrollListener = React.useRef();
     
     const returnHtml = <StudyViewFormContainer>
                         <StudyContent>
@@ -109,4 +111,5 @@ const ButtonWrap = styled.div`
     margin-top: 5px;
     padding-left: 20px;
 `
+
 export default StudyViewForm;
