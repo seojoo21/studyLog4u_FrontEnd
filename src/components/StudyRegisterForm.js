@@ -65,11 +65,12 @@ function StudyForm() {
     }
 
     const onUploadImage = async(blob, callback) => {
-        console.log(blob);
         // 1. 첨부된 이미지 파일을 서버로 전송 후, 이미지 경로 url을 받아온다
-        const imgUrl = await uploadImageApi(blob, jwtToken);
+        const data = await uploadImageApi(blob, jwtToken);
+        const imgUrl = data['domain'] + "/" + data['path'];
+
         // 2. 첨부된 이미지를 화면에 표시  
-        callback(imgUrl, '이미지');
+        callback(imgUrl, 'attached_image');
     }
 
     const returnHtml = <StudyFormContainer>

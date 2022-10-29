@@ -19,7 +19,6 @@ const uploadImageApi = async(blob, jwtToken) => {
 
     try {
         const response = await axios(option);
-        console.log(response);
         return response.data.data;
     } catch (e) {
         console.log(e);
