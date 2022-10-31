@@ -70,7 +70,7 @@ function StudyForm() {
         const imgUrl = data['domain'] + "/" + data['path'];
 
         // 2. 첨부된 이미지를 화면에 표시  
-        callback(imgUrl, 'attached_image');
+        callback(imgUrl, 'image');
     }
 
     const returnHtml = <StudyFormContainer>

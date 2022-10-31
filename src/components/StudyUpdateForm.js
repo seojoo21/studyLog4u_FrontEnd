@@ -10,6 +10,7 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import moment from 'moment';
 import { updateStudyApi } from '../api/studyApi';
+import { uploadImageApi } from '../api/fileApi';
 import { loginCheck } from '../common/loginCheck'
 
 function StudyForm(props) {
@@ -60,6 +61,15 @@ function StudyForm(props) {
         );
     }
 
+    const onUploadImage = async(blob, callback) => {
+        // 1. 첨부된 이미지 파일을 서버로 전송 후, 이미지 경로 url을 받아온다
+        const data = await uploadImageApi(blob, jwtToken);
+        const imgUrl = data['domain'] + "/" + data['path'];
+
+        // 2. 첨부된 이미지를 화면에 표시  
+        callback(imgUrl, 'image');
+    }
+
     const returnHtml = <StudyFormContainer>
                             <>
                             <h4>스터디 수정</h4> 
@@ -84,6 +94,8 @@ function StudyForm(props) {
                                     ['table', 'image', 'link'],
                                     ['code', 'codeblock']
                                 ]}
+                                hooks= {{
+                                    addImageBlobHook: onUploadImage }}
                                 plugins={[colorSyntax]} 
                                 useCommandShortcut={true}
                                 ref={editorRef}
