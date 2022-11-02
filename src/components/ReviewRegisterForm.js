@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -10,6 +10,10 @@ import { loginCheck } from '../common/loginCheck'
 function ReviewRegisterForm(props) {
     const jwtToken = loginCheck();
     const editorRef = React.useRef();
+
+    useEffect( async () => {
+        editorRef.current.getInstance().removeHook('addImageBlobHook');
+    }, []);
     
     const onSubmitHandler = () => {
         const editorInstance = editorRef.current.getInstance();
@@ -31,7 +35,7 @@ function ReviewRegisterForm(props) {
                             ['heading', 'bold', 'italic', 'strike'],
                             ['hr', 'quote'],
                             ['ul', 'ol', 'task', 'indent', 'outdent'],
-                            ['table', 'image', 'link'],
+                            ['table', 'link'],
                             ['code', 'codeblock']
                         ]}
                         plugins={[colorSyntax]} 
