@@ -45,5 +45,6 @@
 - 로그인 후 메인 화면에 오늘 복습할 스터디 리스트가 출력되도록 API 연결 및 화면 수정 
     - 오늘 복습할 스터디 리스트가 없을 때:
     <img width="566" src="https://user-images.githubusercontent.com/98722435/202490416-a35af847-ed55-4e49-a110-8f9d35ba0050.png">
+    
     - 오늘 복습할 스터디 리스트가 있을 때:
     <img width="576" alt="스크린샷 2022-11-18 오전 12 36 01" src="https://user-images.githubusercontent.com/98722435/202490682-33daa883-62c2-473a-b576-9198d3a768fb.png">
