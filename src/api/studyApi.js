@@ -101,4 +101,16 @@ const deleteStudyApi = async (id, jwtToken) => {
     }
 }
 
-export { getStudyListApi, getStudyApi, registerStudyApi, updateStudyApi, deleteStudyApi } ;
+const getTodayStudyListApi = async (jwtToken) => {
+    const url = base.url + `/api/study/getTodayStudyList`;
+    const config = { headers : { 'Authorization' : "Bearer " + jwtToken}};
+
+    try {
+        const response = await axios.get(url, config);
+        return response.data.data;
+    } catch(e) {
+        return [];
+    }
+}
+
+export { getStudyListApi, getStudyApi, registerStudyApi, updateStudyApi, deleteStudyApi, getTodayStudyListApi } ;

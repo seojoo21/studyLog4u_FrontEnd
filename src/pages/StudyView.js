@@ -7,6 +7,9 @@ import StudyViewForm from '../components/StudyViewForm'
 import { getStudyApi } from '../api/studyApi'
 import { getReviewListApi } from '../api/reviewApi'
 import { loginCheck } from '../common/loginCheck'
+// import Fab from '@mui/material/Fab';
+// import FormatSizeIcon from '@mui/icons-material/FormatSize'
+// import { FloatingLabel } from 'react-bootstrap'
 
 function StudyView() {
   const jwtToken = loginCheck();
@@ -33,10 +36,21 @@ function StudyView() {
     getReviewList();
   }, []);
 
+  // const [scrollY, setScrollY] = useState(0);
+  // const handleScroll = (e) => {
+  //   console.log("scrollTop: " + e.currentTarget.scrollTop);
+  // }
+  // const onChangeFontSize = async() => {
+  //     const contents = document.querySelector('.toastui-editor-contents');
+  //     contents.style.fontSize = 'x-large';
+  // }
     return (
       <div>
         <HeaderMain />
           <ContentContainer className="container">
+            {/* <FloatBtnBox onScroll={handleScroll}>
+              <Fab size="medium" color="action" onClick={onChangeFontSize} ><FormatSizeIcon /></Fab>
+            </FloatBtnBox> */}
             <StudyViewForm study={study} reviewList={reviewList} />
           </ContentContainer>
         <FooterMain />
@@ -47,5 +61,8 @@ function StudyView() {
 const ContentContainer = styled.div`
     max-width: 1320px;
 `
-
+// const FloatBtnBox= styled.div`
+//     padding-right: 20px;
+//     float: right;
+// `
 export default StudyView;

@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import HeaderMain from '../components/Header'
 import FooterMain from '../components/Footer'
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
+import { getTodayStudyListApi } from '../api/studyApi'
+import TodayStudyList from '../components/TodayStudyList'
 
 function Main(){
     const cookies = new Cookies();
     const jwtToken = cookies.get('jwtToken');
     const memberName = cookies.get('memberName');
+
+    const [todayStudyList, setTodayStudyList] = useState([]);
+    
+    const getTodayStudyList = async() => {
+        const data = await getTodayStudyListApi(jwtToken);
+        setTodayStudyList(data);
+    }
+
+    useEffect(async () => {
+        getTodayStudyList();
+    }, []);
 
     return (
         <div>
@@ -17,7 +30,7 @@ function Main(){
                     { 
                         jwtToken == undefined
                         ? <><h4> 어서오세요.</h4><h5>🔐 서비스를 이용하시려면 로그인 해주세요.</h5></>
-                        : <><h4> 환영합니다. {memberName}님 </h4><h5>🔓 로그인 되었습니다. 오늘 하루도 화이팅!</h5></>
+                        : <><TodayStudyList data={todayStudyList}/></>
                     }
                 </Welcome>
             </ContentContainer>

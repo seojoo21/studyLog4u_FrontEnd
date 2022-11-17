@@ -39,4 +39,11 @@
   - 각 컴포넌트에 loginCheck() 공통 모듈 적용 
 #### 2022.10.20 서버 패치
 - Jenkins 설치 후 Github 연동 및 CI/CD 구축 
-<img width="994" alt="스크린샷 2022-10-22 오전 12 10 14" src="https://user-images.githubusercontent.com/98722435/197228962-34803c73-e726-463b-a85b-80ff55c9581b.png">
+<img width="994" src="https://user-images.githubusercontent.com/98722435/197228962-34803c73-e726-463b-a85b-80ff55c9581b.png">
+
+#### 2022.11.18 Version 1.2
+- 로그인 후 메인 화면에 오늘 복습할 스터디 리스트가 출력되도록 API 연결 및 화면 수정 
+    - 오늘 복습할 스터디 리스트가 없을 때:
+    <img width="566" src="https://user-images.githubusercontent.com/98722435/202490416-a35af847-ed55-4e49-a110-8f9d35ba0050.png">
+    - 오늘 복습할 스터디 리스트가 있을 때:
+    <img width="576" alt="스크린샷 2022-11-18 오전 12 36 01" src="https://user-images.githubusercontent.com/98722435/202490682-33daa883-62c2-473a-b576-9198d3a768fb.png">
