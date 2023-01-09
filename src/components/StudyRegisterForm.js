@@ -23,17 +23,39 @@ function StudyForm() {
 
     const editorRef = React.useRef();
 
-    const onTitleHandler = (e) => {
-        setTitle(e.currentTarget.value);
-    }
-    const onCategoryHandler = (e) => {
-        setCategory(e.currentTarget.value);
-    }
-    const onNotiDateHanlder = (e) => {
-        setNotiDate(e.target.value);
-    }
+    const onTitleInputHandler = (e) => { setTitle(e.currentTarget.value); }
+    const onCategoryInputHandler = (e) => { setCategory(e.currentTarget.value); }
+    const onNotiDateInputHandler = (e) => { setNotiDate(e.target.value); }
+
     const onSubmitHandler = () => {
         const editorInstance = editorRef.current.getInstance();
+
+        if(title === ""){
+            alert('제목을 입력해주세요.');
+            document.getElementsByName("title")[0].focus();
+            window.scrollTo(0,0);
+            return false;
+        } 
+
+        if(category === ""){
+            alert('분류를 입력해주세요.');
+            document.getElementsByName("category")[0].focus();
+            window.scrollTo(0,0);
+            return false;
+        } 
+
+        if(notiDate === "0"){
+            alert('복습일을 선택해주세요.');
+            document.getElementsByName("notiDate")[0].focus();
+            window.scrollTo(0,0);
+            return false;
+        } 
+
+        if(editorInstance.getMarkdown() === ""){
+            alert('내용을 입력하세요.');
+            return false;
+        }
+
         const requestBody = {
             title: title,
             category: category,
@@ -41,6 +63,7 @@ function StudyForm() {
             content: editorInstance.getMarkdown(),
             nickname: memberName
         }
+
         registerStudyApi(requestBody, jwtToken);
     }
 
@@ -51,7 +74,7 @@ function StudyForm() {
     function Notification(){
         return (
             <FloatingLabel controlId="floatingSelect" label="복습일 선택" className="mb-3">
-                <Form.Select onChange={onNotiDateHanlder} value={notiDate} aria-label="">
+                <Form.Select name="notiDate" onChange={onNotiDateInputHandler} value={notiDate} aria-label="">
                     <option value="0">---복습일 선택---</option>
                     <option value="1">3일 후 알림</option>
                     <option value="2">일주일 후 알림</option>
@@ -76,10 +99,10 @@ function StudyForm() {
     const returnHtml = <StudyFormContainer>
                             <h4>스터디 등록</h4> 
                             <FloatingLabel controlId="floatingInput" label="제목" className="mb-3">
-                                <Form.Control value={title} onChange={onTitleHandler} type="text" placeholder="제목을 입력하세요." />
+                                <Form.Control name="title" value={title} onChange={onTitleInputHandler} type="text" placeholder="제목을 입력하세요." />
                             </FloatingLabel>
                             <FloatingLabel controlId="floatingInput" label="분류" className="mb-3">
-                                <Form.Control value={category} onChange={onCategoryHandler} type="text" placeholder="분류를 입력하세요." />
+                                <Form.Control name="category" value={category} onChange={onCategoryInputHandler} type="text" placeholder="분류를 입력하세요." />
                             </FloatingLabel>
                             <Notification value={notiDate}></Notification>
                             <Editor

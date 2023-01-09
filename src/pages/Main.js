@@ -12,12 +12,14 @@ function Main(){
     const memberName = cookies.get('memberName');
 
     const [todayStudyList, setTodayStudyList] = useState([]);
-    
-    const getTodayStudyList = async() => {
-        const data = await getTodayStudyListApi(jwtToken);
-        setTodayStudyList(data);
-    }
 
+    const getTodayStudyList = async() => {
+        if(jwtToken !== undefined){
+            const data = await getTodayStudyListApi(jwtToken);
+            setTodayStudyList(data);
+        }
+    }
+    
     useEffect(async () => {
         getTodayStudyList();
     }, []);
