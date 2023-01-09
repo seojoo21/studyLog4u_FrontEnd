@@ -48,3 +48,7 @@
     
     - 오늘 복습할 스터디 리스트가 있을 때:
     <img width="576" alt="스크린샷 2022-11-18 오전 12 36 01" src="https://user-images.githubusercontent.com/98722435/202490682-33daa883-62c2-473a-b576-9198d3a768fb.png">
+
+#### 2023.01.10 Version 1.3
+- 메인 페이지에서 jwtToken이 있을 때만 getTodayStudyListApi를 호출할 수 있도록 분기 처리
+- 스터디 등록 시 제목, 분류, 복습일, 내용 값이 입력되지 않은 경우 누락된 값을 입력할 수 있도록 유효성 처리
